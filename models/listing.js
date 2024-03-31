@@ -1,16 +1,8 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema();
-const Mongo_URL = "mongodb://localhost:27017/wandarlust";
-
-main().catch(err => console.log(err));
-async function main() {
-    //Connection to MongoDB
-    await mongoose.connect(Mongo_URL); 
-    console.log("Connected successfully")
-}
+const mongoose = require("mongoose")
+const Schema = mongoose.Schema;
 
 //Creating a schema for our listings
-const Listing = new Schema({
+const listing = new Schema({
     title:{
         type: String,
         require: true,
@@ -28,9 +20,9 @@ const Listing = new Schema({
 
     image:{
         type: String,
-        link: Set((link)=>{
+        default: "https://media.cntraveler.com/photos/58e4005abdecd628dc467e91/16:9/w_1920,c_limit/Exterior-TaylorRiverLodge-Colorado-CRHotel.jpg",
+        set: (link)=>
             link === ""? "https://media.cntraveler.com/photos/58e4005abdecd628dc467e91/16:9/w_1920,c_limit/Exterior-TaylorRiverLodge-Colorado-CRHotel.jpg" : link
-        })
     },
 
     location:{
@@ -42,8 +34,8 @@ const Listing = new Schema({
         type: String,
         require: true,
     }
+});
+const Listing = mongoose.model("Listing", listing);
 
-})
-
-//Exporting created listing schema
-module.exports(Listing);
+//Exporting Listing schema
+module.exports = Listing;
