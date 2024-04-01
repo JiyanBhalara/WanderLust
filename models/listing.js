@@ -13,16 +13,16 @@ const listing = new Schema({
         require: true,
     },
 
-    price:{
-        type: Number,
-        require: true,
-    },
-
     image:{
         type: String,
         default: "https://media.cntraveler.com/photos/58e4005abdecd628dc467e91/16:9/w_1920,c_limit/Exterior-TaylorRiverLodge-Colorado-CRHotel.jpg",
-        set: (link)=>
-            link === ""? "https://media.cntraveler.com/photos/58e4005abdecd628dc467e91/16:9/w_1920,c_limit/Exterior-TaylorRiverLodge-Colorado-CRHotel.jpg" : link
+        set: (v)=>
+            v === ""? "https://media.cntraveler.com/photos/58e4005abdecd628dc467e91/16:9/w_1920,c_limit/Exterior-TaylorRiverLodge-Colorado-CRHotel.jpg" : v,
+    },
+
+    price:{
+        type: Number,
+        require: true,
     },
 
     location:{
