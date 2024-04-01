@@ -20,6 +20,7 @@ async function main() {
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+app.use(express.urlencoded({extended: true}));
 
 app.get("/",async (req, res)=>{
     let sampleListing = new Listing({
@@ -33,7 +34,15 @@ app.get("/",async (req, res)=>{
     console.log("Saved successfully")
 })
 
+//Index route
 app.get("/listings",async (req, res)=>{
     const allListing = await Listing.find({});
     res.render("./Listings/index.ejs", {allListing});
+})
+
+//Show route
+app.get("/listings/:id", async (req,res)=>{
+    let {id} = req.params;
+    const ShowListing = await Listing.findById(id);
+    res.render("./Listings/showListing.ejs", {ShowListing});
 })
