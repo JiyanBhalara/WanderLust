@@ -40,9 +40,29 @@ app.get("/listings",async (req, res)=>{
     res.render("./Listings/index.ejs", {allListing});
 })
 
+//New listing route
+app.get("/listings/new", async (req,res)=>{
+    res.render("./Listings/CreateListing.ejs");
+})
+
+//Add new listing to database
+app.post("/listings", async (req,res)=>{
+    let {title, description, price, image, location, country} =  req.body;
+    const NewListing = await new Listing({
+        title: title,
+        description: description,
+        price: price,
+        image: image,
+        location: location,
+        country: country
+    })
+    NewListing.save();
+})
+
 //Show route
 app.get("/listings/:id", async (req,res)=>{
     let {id} = req.params;
     const ShowListing = await Listing.findById(id);
     res.render("./Listings/showListing.ejs", {ShowListing});
 })
+
