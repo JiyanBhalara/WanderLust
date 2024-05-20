@@ -6,8 +6,6 @@ const Mongo_URL = "mongodb://localhost:27017/wanderlust";
 const path = require("path");
 const MethodOverride = require("method-override")
 
-
-
 //Connecting backend on port 5000
 app.listen(5000, ()=>{
     console.log("App listening to 5000");
@@ -74,7 +72,13 @@ app.put("/listings/:id", async(req, res)=>{
     await Listing.findByIdAndUpdate(id, {...req.body.listing});
     res.redirect("/listings");
 })
-    
+
+//Delete route
+app.delete("/listings/:id",  async(req,res)=>{
+    let {id} = req.params;
+    await Listing.findByIdAndDelete(id);
+    res.redirect("/listings");
+})
 
 //Show route
 app.get("/listings/:id", async (req,res)=>{
@@ -82,4 +86,6 @@ app.get("/listings/:id", async (req,res)=>{
     const ShowListing = await Listing.findById(id);
     res.render("./Listings/showListing.ejs", {ShowListing});
 })
+
+
 
