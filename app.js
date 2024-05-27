@@ -4,7 +4,8 @@ const app = express();
 const Listing = require("./models/listing.js");
 const Mongo_URL = "mongodb://localhost:27017/wanderlust";
 const path = require("path");
-const MethodOverride = require("method-override")
+const MethodOverride = require("method-override");
+const EjsMate = require("ejs-mate");
 
 //Connecting backend on port 5000
 app.listen(5000, ()=>{
@@ -21,6 +22,8 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({extended: true}));
 app.use(MethodOverride("_method"));
+app.engine("ejs", EjsMate);
+app.use(express.static(path.join(__dirname, "/public")));
 
 app.get("/",async (req, res)=>{
     let sampleListing = new Listing({
@@ -32,6 +35,7 @@ app.get("/",async (req, res)=>{
     })
     await sampleListing.save();
     console.log("Saved successfully")
+    res.send("Hi I am root");
 })
 
 //Index route

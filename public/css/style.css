@@ -1,0 +1,12 @@
+body{
+    background-color: pink !important;
+}
+
+.navbar{
+    background-color: white !important;
+}
+
+.fa-compass{
+    font-size: 2rem ;
+    color: #ff3a5e ;
+}
