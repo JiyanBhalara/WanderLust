@@ -1,5 +1,5 @@
 body{
-    background-color: pink !important;
+    background-color: white;
 }
 
 .navbar{
@@ -9,4 +9,36 @@ body{
 .fa-compass{
     font-size: 2rem ;
     color: #ff3a5e ;
+}
+
+.f-info{
+    display: flex;
+    height: 8rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #ebebeb;
+}
+
+.f-info-links a{
+    text-decoration: none;
+    color: #222222;
+}
+
+.f-info-links a:hover{
+    text-decoration: underline;
+    color: #222222;
+}
+
+.f-info-links{
+    vertical-align: middle;
+    width: 100%;
+}
+
+.f-info-socials{
+    vertical-align: middle;
+    width: 100%;
+    font-size: 1.2rem;
+    margin-right: 1rem;
 }
