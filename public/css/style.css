@@ -98,3 +98,12 @@ body{
     background-color: #ff3a5e !important;
     border: none !important;
 }
+
+.show-image{
+    height: 30vh !important;
+}
+
+.btns{
+    display: flex;
+    flex-direction: row;
+}

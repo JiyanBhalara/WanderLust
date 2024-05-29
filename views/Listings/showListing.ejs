@@ -1,17 +1,42 @@
-<% layout("/Layouts/boilerplate") %>
+<% layout("./Layouts/boilerplate") %>
 <body>
-    <h2><%= ShowListing.title %></h2>
-    <ul>
-        <li>Title: <%= ShowListing.title %></li>
-        <li>Description: <%= ShowListing.description %></li>
-        <li>Price: &#36; <%= ShowListing.price %></li>
-        <li>Location: <%= ShowListing.location %></li>
-        <li>Country: <%= ShowListing.country %></li>
-    </ul>
-    <form action="/listings/<%= ShowListing._id %>/edit" method="get">
-        <button> Edit </button>
+  <div class="row mt-3">
+    <div class="col-8 offset-3">
+      <h3>Listing Details</h3>
+    </div>
+  </div>
+  <div class="card mt-2 col-6 offset-3">
+    <img
+      src="<%= ShowListing.image %>"
+      class="card-img-top show-image col-6"
+      alt="listing-image"
+    />
+    <div class="card-body">
+      <p class="card-text">
+        <b><%= ShowListing.title %></b>
+        <br />
+        <%= ShowListing.description %>
+        <br />
+        &#36;<%= ShowListing.price %>
+        <br />
+        <%= ShowListing.country %>
+        <br />
+        <%= ShowListing.location %>
+      </p>
+    </div>
+  </div>
+  <div class="btns mb-3 offset-3">
+    <a
+      href="/listings/<%= ShowListing._id %>/edit"
+      class="btn btn-dark edit-btn"
+      >Edit
+    </a>
+
+    <form
+      method="POST"
+      action="/listings/<%= ShowListing._id %>?_method=DELETE"
+    >
+      <button class="btn btn-dark offset-2">Delete</button>
     </form>
-    <form method="POST" action="/listings/<%= ShowListing._id %>?_method=DELETE">
-        <button>Delete this listing</button>
-    </form>
+  </div>
 </body>
