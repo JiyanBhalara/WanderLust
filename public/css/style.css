@@ -1,5 +1,6 @@
 body{
     background-color: white;
+    font-family: "Plus Jakarta Sans", sans-serif !important; 
 }
 
 .navbar{
@@ -41,4 +42,43 @@ body{
     width: 100%;
     font-size: 1.2rem;
     margin-right: 1rem;
+}
+
+
+
+.card{
+    border: none !important;
+    margin-bottom: 2rem !important;
+}
+
+.card-body{
+    padding: 0 !important;
+}
+
+.card-text p {
+    font-weight: 400 !important;
+}
+
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    height: 20rem !important;
+}
+
+.listing-link{
+    text-decoration: none;
+    color:#222222 !important;
+    margin: 0 !important;
+}
+
+
+.card-img-overlay{
+    opacity: 0;
+}
+
+.card-img-overlay:hover{
+    background-color: white;
+    opacity: 0.25;
+    transition-duration: 0.3s;
 }
