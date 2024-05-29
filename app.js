@@ -26,15 +26,6 @@ app.engine("ejs", EjsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
 app.get("/",async (req, res)=>{
-    let sampleListing = new Listing({
-        title: "Hello",
-        description: "First hotel",
-        price: 1200,
-        location: "delhi",
-        country: "India"
-    })
-    await sampleListing.save();
-    console.log("Saved successfully")
     res.send("Hi I am root");
 })
 
@@ -46,7 +37,8 @@ app.get("/listings",async (req, res)=>{
 
 //New listing route
 app.get("/listings/new", async (req,res)=>{
-    res.render("./Listings/CreateListing.ejs");
+    const listing = await Listing.find();
+    res.render("./Listings/CreateListing.ejs", {listing});
 })
 
 //Add new listing to database

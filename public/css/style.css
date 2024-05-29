@@ -1,8 +1,14 @@
 body{
     background-color: white;
     font-family: "Plus Jakarta Sans", sans-serif !important; 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
+.container{
+    flex: 1;
+}
 .navbar{
     background-color: white !important;
 }
@@ -81,4 +87,9 @@ body{
     background-color: white;
     opacity: 0.25;
     transition-duration: 0.3s;
+}
+
+.add-btn{
+    background-color: #ff3a5e !important;
+    border: none !important;
 }
