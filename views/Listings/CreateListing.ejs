@@ -1,8 +1,7 @@
 <% layout("./Layouts/boilerplate") %>
 <body>
-  <div class="row offset-2">
+  <div class="row offset-2 mt-3">
     <h3>Create A New Listing</h3>
-    <br /><br />
     <form method="post" action="/listings">
       <div class="col-8">
         <div class="mb-3">
@@ -33,7 +32,7 @@
           />
         </div>
         <div class="row">
-          <div class="mb-3 col-4">
+          <div class="mb-3 col-md-4">
             <label for="price" class="form-label"> Price </label>
             <input
               type="number"
@@ -42,7 +41,7 @@
               class="form-control"
             />
           </div>
-          <div class="mb-3 col-8">
+          <div class="mb-3 col-md-8">
             <label for="country" class="form-label"> Country </label>
             <input
               type="text"
@@ -62,9 +61,7 @@
             class="form-control"
           />
         </div>
-        <br />
-        <button type="submit" class="btn btn-dark add-btn">Add</button>
-        <br /><br />
+        <button type="submit" class="btn btn-dark add-btn mt-3 mb-3">Add</button>
       </div>
     </form>
   </div>
