@@ -53,6 +53,7 @@ app.post("/listings", async (req,res)=>{
         country: country
     })
     NewListing.save();
+    res.redirect("/listings");
 })
 
 //edit route

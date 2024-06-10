@@ -2,7 +2,7 @@
 <body>
   <div class="row offset-2 mt-3">
     <h3>Create A New Listing</h3>
-    <form method="post" action="/listings">
+    <form method="post" action="/listings" class="needs-validation" novalidate>
       <div class="col-8">
         <div class="mb-3">
           <label for="title" class="form-label"> Title </label>
@@ -11,8 +11,13 @@
             placeholder="Enter a catchy title"
             name="title"
             class="form-control"
+            required
           />
+          <div class="invalid-feedback">
+            Enter a valid title
+          </div>
         </div>
+        
         <div class="mb-3">
           <label for="description" class="form-label"> Description </label>
           <textarea
@@ -20,7 +25,11 @@
             placeholder="Enter a description"
             name="description"
             class="form-control"
+            required
           ></textarea>
+          <div class="invalid-feedback">
+            Description cannot be empty.
+          </div>
         </div>
         <div class="mb-3">
           <label for="image" class="form-label"> Image </label>
@@ -39,7 +48,11 @@
               placeholder="Enter price"
               name="price"
               class="form-control"
+              required
             />
+            <div class="invalid-feedback">
+              Enter a valid price
+            </div>
           </div>
           <div class="mb-3 col-md-8">
             <label for="country" class="form-label"> Country </label>
@@ -48,7 +61,11 @@
               placeholder="Enter country"
               name="country"
               class="form-control"
+              required
             />
+            <div class="invalid-feedback">
+              Enter a valid country
+            </div>
           </div>
         </div>
         <div class="mb-3">
@@ -59,7 +76,11 @@
             placeholder="Enter location"
             name="location"
             class="form-control"
+            required
           />
+          <div class="invalid-feedback">
+            Enter a valid location
+          </div>
         </div>
         <button type="submit" class="btn btn-dark add-btn mt-3 mb-3">Add</button>
       </div>
