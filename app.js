@@ -80,21 +80,13 @@ app.get("/listings/:id", wrapAsync(async (req, res) => {
 
 // Error handling for undefined routes
 app.all("*", (req, res, next) => {
-    console.log("404 - Page Not Found");  // Log the route that caused the error
-    next(new ExpressError(404, "Page Not Found!"));
+    next(new ExpressError(404, "Page Not Found!"))
 });
 
 // Error-handling middleware
 app.use((err, req, res, next) => {
-    console.error("Error handling middleware reached", err);  // Log the error
-    if (err.name === 'ValidationError') {
-        const messages = Object.values(err.errors).map(el => el.message);
-        err = new ExpressError(400, messages.join(', '));
-    }
     const { statusCode = 500, message = "Something went wrong" } = err;
-    res.status(statusCode).send(message);
-    // Alternatively, render an error view:
-    // res.status(statusCode).render('error', { err });
+    res.status(statusCode).render("./Listings/Error.ejs", {message})
 });
 
 // Start the server
