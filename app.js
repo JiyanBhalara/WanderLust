@@ -6,10 +6,9 @@ const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
 const Listing = require("./models/listing.js");
-
 const app = express();
 const Mongo_URL = "mongodb://localhost:27017/wanderlust";
-
+const {listingSchema} = require("./schema.js")
 // Connect to MongoDB
 main().catch(err => console.log(err));
 async function main() {
@@ -44,6 +43,10 @@ app.get("/listings/new", wrapAsync(async (req, res) => {
 
 // Add new listing to database
 app.post("/listings", wrapAsync(async (req, res) => {
+    result = listingSchema.validate(req.body)
+    if(result.error){
+        throw new ExpressError(400, result.error)
+    }
     const { title, description, price, image, location, country } = req.body;
     const newListing = new Listing({ title, description, price, image, location, country });
     await newListing.save();
