@@ -9,6 +9,7 @@ const Listing = require("./models/listing.js");
 const app = express();
 const Mongo_URL = "mongodb://localhost:27017/wanderlust";
 const {listingSchema} = require("./schema.js")
+
 // Connect to MongoDB
 main().catch(err => console.log(err));
 async function main() {
