@@ -31,6 +31,17 @@ app.get("/", wrapAsync(async (req, res) => {
     res.redirect("/listings");
 }));
 
+//validating listing for schema validation
+const validateListing = (req,res,next)=>{
+    let {error} = listingSchema.validate(req.body)
+    if(error){
+        let errMsg = error.details.map((ele)=>ele.message).join(",")
+        throw new ExpressError(400, errMsg)
+    }else{
+        next()
+    }
+}
+
 // Index route
 app.get("/listings", wrapAsync(async (req, res) => {
     const allListing = await Listing.find({});
@@ -43,11 +54,7 @@ app.get("/listings/new", wrapAsync(async (req, res) => {
 }));
 
 // Add new listing to database
-app.post("/listings", wrapAsync(async (req, res) => {
-    result = listingSchema.validate(req.body)
-    if(result.error){
-        throw new ExpressError(400, result.error)
-    }
+app.post("/listings", validateListing, wrapAsync(async (req, res) => {
     const { title, description, price, image, location, country } = req.body;
     const newListing = new Listing({ title, description, price, image, location, country });
     await newListing.save();
