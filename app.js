@@ -6,6 +6,7 @@ const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
 const Listing = require("./models/listing.js");
+const Review = require("./models/review.js");
 const app = express();
 const Mongo_URL = "mongodb://localhost:27017/wanderlust";
 const {listingSchema} = require("./schema.js")
