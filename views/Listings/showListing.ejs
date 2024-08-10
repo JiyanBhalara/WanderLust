@@ -38,4 +38,37 @@
       <button class="btn btn-dark offset-2">Delete</button>
     </form>
   </div>
+
+  <div class="col-8 offset-3 mt-3">
+    <h3>Leave A Review</h3>
+    <form method="POST" action="/listings/<%= ShowListing._id %>/review" novalidate class="needs-validation">
+      <div class="mb-3">
+        <label for="rating" class="form-label">Rating</label>
+        <input
+          type="range"
+          id="rating"
+          name="review[rating]"
+          class="form-range"
+          min="1"
+          max="5"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="comment" class="form-label">Comment</label>
+        <textarea
+          rows="5"
+          type="text"
+          id="comment"
+          name="review[comment]"
+          class="form-control"
+          required
+        ></textarea>
+        <div class="invalid-feedback">
+          Add comment to submit a review
+        </div>
+      </div>
+      
+      <button class="btn btn-primary mb-5">Submit</button>
+    </form>
+  </div>
 </body>
