@@ -38,7 +38,6 @@ app.get(
 
 // validating listing for schema validation
 const validateListing = (req, res, next) => {
-  console.log(req.body)
   let { error } = listingSchema.validate(req.body);
   if (error) {
     let errMsg = error.details.map((ele) => ele.message).join(",");
