@@ -134,12 +134,19 @@ app.delete(
   })
 );
 
+app.delete("/listings/:id/review/:reviewId", wrapAsync(async (req,res)=>{
+  const {id, reviewId} = req.params;
+  await Listing.findByIdAndUpdate(id, {$pull: {reviews: reviewId}});
+  await Review.findByIdAndDelete(reviewId);
+  res.redirect(`/listings/${id}`);
+}))
+
 // Show route
 app.get(
   "/listings/:id",
   wrapAsync(async (req, res) => {
     const { id } = req.params;
-    const ShowListing = await Listing.findById(id);
+    const ShowListing = await Listing.findById(id).populate("reviews");
     res.render("./Listings/showListing.ejs", { ShowListing });
   })
 );
