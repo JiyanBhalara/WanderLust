@@ -9,6 +9,19 @@ const app = express();
 const Mongo_URL = "mongodb://localhost:27017/wanderlust";
 const listings = require("./routes/listing.js");
 const review = require("./routes/review.js");
+const session = require("express-session");
+const flash = require("connect-flash");
+
+const sessionOptions = {
+  secret: "mysecretcode",
+  resave: false,
+  saveUninitialized: true,
+  cookie:{
+    expires: Date.now() + 7*24*60*60*1000,
+    maxAge: 7*24*60*60*1000,
+    httpOnly: true
+  }
+}
 
 // Connect to MongoDB
 main().catch((err) => console.log(err));
@@ -26,6 +39,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
+
+app.use(session(sessionOptions));
+app.use(flash())
+
+app.use((req,res,next)=>{
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  next();
+})
 
 // Routes
 app.get(
