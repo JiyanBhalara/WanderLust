@@ -7,8 +7,9 @@ const wrapAsync = require("./utils/wrapAsync.js")
 const ExpressError = require("./utils/ExpressError.js");
 const app = express();
 const Mongo_URL = "mongodb://localhost:27017/wanderlust";
-const listings = require("./routes/listing.js");
-const review = require("./routes/review.js");
+const listingsRoute = require("./routes/listing.js");
+const reviewRoute = require("./routes/review.js");
+const userRoute = require("./routes/user.js")
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
@@ -67,8 +68,9 @@ app.get(
   })
 );
 
-app.use("/listings", listings);
-app.use("/listings/:id/review", review);
+app.use("/listings", listingsRoute);
+app.use("/listings/:id/review", reviewRoute);
+app.use("/", userRoute);
 
 // Error handling for undefined routes
 app.all("*", (req, res, next) => {

@@ -54,8 +54,9 @@ router.get(
     if(!listing){
       req.flash("error", "Listing You are Looking For Doesn't Exit");
       res.redirect("/listings");
+    }else{
+      res.render("./Listings/UpdateListing.ejs", { listing });
     }
-    res.render("./Listings/UpdateListing.ejs", { listing });
   })
 );
 
@@ -90,8 +91,9 @@ router.get(
     if(!ShowListing){
       req.flash("error", "Listing You Are Looking For Doesn't Exit");
       res.redirect("/listings")
+    }else{
+      res.render("./Listings/showListing.ejs", { ShowListing });
     }
-    res.render("./Listings/showListing.ejs", { ShowListing });
   })
 );
 
